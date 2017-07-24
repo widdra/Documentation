@@ -32,19 +32,26 @@ w2.example.com
 d1.example.com
 d2.example.com
 ```
- Except being able to ssh in there is no additional configuration needed on the machines you wish to control.
+On the remote machines you wish to control you have to prepare ssh and Python 2.7 [as described here](//docs.ansible.com/ansible/latest/intro_installation.html#managed-node-requirements).
+``` bash
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get dist-upgrade
+sudo apt-get install python2.7
+```
  
- ## Creating and Using Playbooks
- To run a playbook, just execute `ansible-playbook playbook.yml` on the control machine.
+## Creating and Using Playbooks
+To run a playbook, just execute `ansible-playbook playbook.yml` on the control machine.
+If you need to specify the ssh password use the `--ask-pass` like that `ansible-playbook playbook.yml --ask-pass`.
  
- ## Glossary
- <dl>
-  <dt>Inventory</dt>
-  <dd>Configuration of machines to control, as example <code>/etc/ansible/hosts</code>.</dd>
+## Glossary
+<dl>
+ <dt>Inventory</dt>
+ <dd>Configuration of machines to control, as example <code>/etc/ansible/hosts</code>.</dd>
 
-  <dt>Playbook</dt>
-  <dd>Deployment control files. Here we specify the final state our controlled machines should be changed/updated/upgraded to.</dd>
+ <dt>Playbook</dt>
+ <dd>Deployment control files. Here we specify the final state our controlled machines should be changed/updated/upgraded to.</dd>
   
-  <dt>Task</dt>
-  <dd>A single configuration point. A playbook can have multiple tasks.</dd>
+ <dt>Task</dt>
+ <dd>A single configuration point. A playbook can have multiple tasks.</dd>
 </dl>
