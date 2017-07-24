@@ -42,7 +42,11 @@ sudo apt-get install python2.7
  
 ## Creating and Using Playbooks
 To run a playbook, just execute `ansible-playbook playbook.yml` on the control machine.
-If you need to specify the ssh password use the `--ask-pass` like that `ansible-playbook playbook.yml --ask-pass`.
+
+If you need to specify the ssh password use the `--ask-pass` parameter.
+If you use sudo/become in your tasks use the `--ask-become-pass` parameter.
+
+The resulting call can look like `ansible-playbook playbook.yml --ask-pass --ask-become-pass`.
  
 ## Glossary
 <dl>
