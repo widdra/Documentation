@@ -21,6 +21,8 @@ Edit `/etc/ansible/hosts` on the control machine to include the remote machines 
 You can also group them together.
 Ansible will respect the ssh connection defaults in `~/.ssh/config` etc.
 If these are not enough you can also add additional configuration for the ssh connections in this file [as shown here](//docs.ansible.com/ansible/intro_inventory.html).
+
+Especially configuring the Python path can be valuable when using modern Ubuntu distributions because Ansible will try to use Python2 using the `python` command and only Python3 is preinstalled as `/usr/bin/python3`
 ``` ini
 x1.example.com
 
@@ -31,15 +33,25 @@ w2.example.com
 [db]
 d1.example.com
 d2.example.com
+
+[db:vars]
+ansible_user=dbadmin
+ansible_python_interpreter=/usr/bin/python3
 ```
-On the remote machines you wish to control you have to prepare ssh and Python 2.7 [as described here](//docs.ansible.com/ansible/latest/intro_installation.html#managed-node-requirements).
+
+On the remote machines you wish to control you have to prepare an up to date ssh.
+
 ``` bash
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
+```
+
+Additionally you have the option of using Python 2.7 (the default [as described here](//docs.ansible.com/ansible/latest/intro_installation.html#managed-node-requirements)) or Python 3 which requires said changes in your Inventory file but is preinstalled in Ubuntu.
+``` bash
 sudo apt-get install python2.7
 ```
- 
+
 ## Creating and Using Playbooks
 To run a playbook, just execute `ansible-playbook playbook.yml` on the control machine.
 
