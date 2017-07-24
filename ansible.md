@@ -52,7 +52,25 @@ Additionally you have the option of using Python 2.7 (the default [as described 
 sudo apt-get install python2.7
 ```
 
-## Creating and Using Playbooks
+## Creating Playbooks
+``` yml
+---
+- hosts: web
+  become: yes
+
+  tasks:
+  - name: Update repository cache and install nginx package
+    apt:
+      name: nginx
+      update_cache: yes
+      state: latest
+  - name: Allow nginx traffic in UFW
+    ufw:
+      rule: allow
+      name: Nginx Full
+```
+
+## Using Playbooks
 To run a playbook, just execute `ansible-playbook playbook.yml` on the control machine.
 
 If you need to specify the ssh password use the `--ask-pass` parameter.
