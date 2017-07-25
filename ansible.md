@@ -39,12 +39,14 @@ ansible_user=dbadmin
 ansible_python_interpreter=/usr/bin/python3
 ```
 
-On the remote machines you wish to control you have to prepare an up to date ssh.
+On the remote machines you wish to control you have to prepare an up to date ssh and firewall.
 
 ``` bash
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get dist-upgrade
+sudo ufw allow OpenSSH
+sudo ufw enable
 ```
 
 Additionally you have the option of using Python 2.7 (the default [as described here](//docs.ansible.com/ansible/latest/intro_installation.html#managed-node-requirements)) or Python 3 which requires said changes in your Inventory file but is preinstalled in Ubuntu.
